@@ -1,0 +1,15 @@
+env:
+  DATABASE_URL: string
+  PORT: int
+services:
+  - name: api
+    command: cargo run
+start_commands:
+  - docker compose up -d
+test_command: cargo test
+ignore_globs:
+  - target/**
+  - node_modules/**
+desired_ports:
+  - 3000
+  - 5432

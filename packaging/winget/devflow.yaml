@@ -1,0 +1,13 @@
+PackageIdentifier: Devflow.Devflow
+PackageVersion: 0.1.0
+PackageName: devflow
+Publisher: Devflow
+License: MIT
+ShortDescription: Developer workflow automation CLI
+Installers:
+  - Architecture: x64
+    InstallerType: exe
+    InstallerUrl: https://github.com/example/devflow/releases/download/v0.1.0/devflow-windows-x86_64.exe
+    InstallerSha256: REPLACE_ME
+ManifestType: singleton
+ManifestVersion: 1.6.0

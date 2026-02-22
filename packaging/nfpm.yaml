@@ -1,0 +1,13 @@
+name: devflow
+arch: amd64
+platform: linux
+version: 0.1.0
+section: default
+priority: optional
+maintainer: Devflow Maintainers <maintainers@example.com>
+description: |
+  Developer workflow automation CLI.
+license: MIT
+contents:
+  - src: ./target/release/devflow
+    dst: /usr/local/bin/devflow

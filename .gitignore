@@ -1,0 +1,43 @@
+target/
+
+# Rust
+**/*.rs.bk
+
+# Environment and local overrides
+.env
+.env.*
+!.env.example
+
+# Devflow local state
+.devflow/
+devflow.log
+
+# Coverage / profiling
+coverage/
+*.profraw
+*.profdata
+
+# Packaging/build output
+dist/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python plugin caches
+__pycache__/
+*.pyc
+
+# Node leftovers (for fixture/plugin tooling)
+node_modules/
+npm-debug.log*
+yarn-error.log*
