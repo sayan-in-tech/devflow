@@ -5,7 +5,6 @@ use predicates::str::contains;
 fn init_creates_config() {
     let td = tempfile::tempdir().expect("tempdir");
     cargo_bin_cmd!("devflow")
-        .expect("binary")
         .current_dir(td.path())
         .arg("init")
         .assert()
@@ -19,7 +18,6 @@ fn init_creates_config() {
 fn port_free_outputs_json_list() {
     let td = tempfile::tempdir().expect("tempdir");
     cargo_bin_cmd!("devflow")
-        .expect("binary")
         .current_dir(td.path())
         .args(["port", "--free"])
         .assert()
