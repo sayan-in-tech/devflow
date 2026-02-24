@@ -47,8 +47,8 @@ pub async fn dispatch(name: &str, payload: serde_json::Value) -> Result<PluginRe
         bail!("plugin exited with status {}", output.status);
     }
 
-    let resp: PluginResponse = serde_json::from_slice(&output.stdout)
-        .context("plugin produced invalid JSON")?;
+    let resp: PluginResponse =
+        serde_json::from_slice(&output.stdout).context("plugin produced invalid JSON")?;
     Ok(resp)
 }
 

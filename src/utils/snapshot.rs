@@ -47,7 +47,9 @@ pub fn save_snapshot(root: &Path) -> Result<()> {
         .collect::<Vec<_>>();
 
     let env = std::env::vars()
-        .filter(|(k, _)| !k.to_lowercase().contains("token") && !k.to_lowercase().contains("secret"))
+        .filter(|(k, _)| {
+            !k.to_lowercase().contains("token") && !k.to_lowercase().contains("secret")
+        })
         .collect::<Vec<_>>();
 
     let snap = Snapshot {

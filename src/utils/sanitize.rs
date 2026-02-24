@@ -4,7 +4,7 @@ pub fn redact(input: &str) -> String {
     let mut text = input.to_string();
     for pattern in [
         r"(?i)(password|token|secret|apikey)\s*=\s*[^\s]+",
-        r"(?i)(password|token|secret|apikey)\"?\s*:\s*\"[^\"]+\"",
+        r#"(?i)(password|token|secret|apikey)"?\s*:\s*"[^"]+""#,
     ] {
         if let Ok(re) = Regex::new(pattern) {
             text = re.replace_all(&text, "$1=<redacted>").into_owned();

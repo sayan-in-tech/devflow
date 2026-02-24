@@ -26,8 +26,8 @@ pub struct ServiceDef {
 
 pub fn load_config(root: &Path) -> Result<DevflowConfig> {
     let path = root.join(".devflow.yaml");
-    let content = fs::read_to_string(&path)
-        .with_context(|| format!("could not read {}", path.display()))?;
+    let content =
+        fs::read_to_string(&path).with_context(|| format!("could not read {}", path.display()))?;
     serde_yaml::from_str(&content).context("invalid .devflow.yaml")
 }
 

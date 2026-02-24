@@ -20,7 +20,12 @@ pub async fn run(args: PortArgs) -> Result<()> {
                 if let Some(owner) = find_owner_by_port(p) {
                     println!(
                         "port {} pid={} parent={:?} mem={}KB uptime={}s cmd={}",
-                        owner.port, owner.pid, owner.parent_pid, owner.memory_kb, owner.uptime_secs, owner.cmd
+                        owner.port,
+                        owner.pid,
+                        owner.parent_pid,
+                        owner.memory_kb,
+                        owner.uptime_secs,
+                        owner.cmd
                     );
                 }
             }

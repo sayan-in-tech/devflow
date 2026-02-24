@@ -9,8 +9,8 @@ pub mod snap;
 pub mod up;
 pub mod watch;
 
-use anyhow::Result;
 use crate::cli::{Cli, Command, EnvMode, SnapMode};
+use anyhow::Result;
 
 pub async fn run(cli: Cli) -> Result<()> {
     match cli.command {

@@ -23,7 +23,7 @@ pub async fn run() -> Result<()> {
     let mut terminal = Terminal::new(backend)?;
 
     let mut sys = System::new_with_specifics(
-        RefreshKind::new()
+        RefreshKind::nothing()
             .with_memory(MemoryRefreshKind::everything())
             .with_cpu(CpuRefreshKind::everything()),
     );
@@ -39,16 +39,25 @@ pub async fn run() -> Result<()> {
         terminal.draw(|f| {
             let chunks = Layout::default()
                 .direction(Direction::Vertical)
-                .constraints([Constraint::Length(3), Constraint::Length(3), Constraint::Min(3)])
+                .constraints([
+                    Constraint::Length(3),
+                    Constraint::Length(3),
+                    Constraint::Min(3),
+                ])
                 .split(f.area());
 
             let head = Paragraph::new("devflow dash (press q to quit)")
                 .block(Block::default().borders(Borders::ALL).title("Status"));
-            let health = Paragraph::new(format!("CPU: {:.1}% | MEM: {} KB | PROCS: {}", cpu, mem, procs))
-                .style(Style::default().fg(Color::Green))
-                .block(Block::default().borders(Borders::ALL).title("System"));
-            let body = Paragraph::new("services: local\nports: use devflow port --watch\ntests: use devflow watch")
-                .block(Block::default().borders(Borders::ALL).title("Workspace"));
+            let health = Paragraph::new(format!(
+                "CPU: {:.1}% | MEM: {} KB | PROCS: {}",
+                cpu, mem, procs
+            ))
+            .style(Style::default().fg(Color::Green))
+            .block(Block::default().borders(Borders::ALL).title("System"));
+            let body = Paragraph::new(
+                "services: local\nports: use devflow port --watch\ntests: use devflow watch",
+            )
+            .block(Block::default().borders(Borders::ALL).title("Workspace"));
             f.render_widget(head, chunks[0]);
             f.render_widget(health, chunks[1]);
             f.render_widget(body, chunks[2]);

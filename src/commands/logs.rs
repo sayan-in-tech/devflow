@@ -42,7 +42,13 @@ pub async fn run() -> Result<()> {
 
 fn normalize_trace(line: &str) -> String {
     line.split_whitespace()
-        .map(|t| if t.chars().all(|c| c.is_numeric()) { "<n>" } else { t })
+        .map(|t| {
+            if t.chars().all(|c| c.is_numeric()) {
+                "<n>"
+            } else {
+                t
+            }
+        })
         .collect::<Vec<_>>()
         .join(" ")
 }

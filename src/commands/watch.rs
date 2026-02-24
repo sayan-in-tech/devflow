@@ -4,7 +4,10 @@ use notify::{Config, RecommendedWatcher, RecursiveMode, Watcher};
 use std::{env, path::Path, sync::mpsc::channel, time::Duration};
 use tokio::process::Command;
 
-use crate::utils::{config::load_config, language::{detect_project_language, Language}};
+use crate::utils::{
+    config::load_config,
+    language::{detect_project_language, Language},
+};
 
 pub async fn run() -> Result<()> {
     let root = env::current_dir()?;
@@ -25,7 +28,9 @@ pub async fn run() -> Result<()> {
 
     loop {
         if let Ok(event) = rx.recv_timeout(Duration::from_secs(1)) {
-            let Ok(ev) = event else { continue; };
+            let Ok(ev) = event else {
+                continue;
+            };
             let impacted = ev
                 .paths
                 .iter()
