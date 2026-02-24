@@ -1,4 +1,4 @@
-use assert_cmd::{cargo::cargo_bin_cmd, prelude::*};
+use assert_cmd::cargo::cargo_bin_cmd;
 use predicates::str::contains;
 
 #[test]
