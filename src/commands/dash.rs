@@ -108,10 +108,7 @@ pub async fn run() -> Result<()> {
                 )
             })
             .collect();
-        proc_data.sort_by(|a, b| {
-            b.2.partial_cmp(&a.2)
-                .unwrap_or(std::cmp::Ordering::Equal)
-        });
+        proc_data.sort_by(|a, b| b.2.partial_cmp(&a.2).unwrap_or(std::cmp::Ordering::Equal));
         proc_data.truncate(50);
 
         let proc_count = sys.processes().len();
@@ -149,9 +146,9 @@ pub async fn run() -> Result<()> {
                 .constraints([
                     Constraint::Length(10), // banner
                     Constraint::Length(3),  // gauges row
-                    Constraint::Min(8),    // middle section
-                    Constraint::Length(5), // sparkline
-                    Constraint::Length(3), // footer
+                    Constraint::Min(8),     // middle section
+                    Constraint::Length(5),  // sparkline
+                    Constraint::Length(3),  // footer
                 ])
                 .split(area);
 
@@ -172,10 +169,7 @@ pub async fn run() -> Result<()> {
             banner_lines.push(Line::from(""));
             banner_lines.push(Line::from(vec![
                 Span::styled("  ", Style::default()),
-                Span::styled(
-                    format!("{} ", spinner),
-                    Style::default().fg(Color::Cyan),
-                ),
+                Span::styled(format!("{} ", spinner), Style::default().fg(Color::Cyan)),
                 Span::styled(
                     "ONLINE",
                     Style::default()
@@ -200,10 +194,7 @@ pub async fn run() -> Result<()> {
                     "  \u{2502}  \u{23f1} ",
                     Style::default().fg(Color::DarkGray),
                 ),
-                Span::styled(
-                    format_uptime(uptime),
-                    Style::default().fg(Color::Yellow),
-                ),
+                Span::styled(format_uptime(uptime), Style::default().fg(Color::Yellow)),
             ]));
 
             let banner = Paragraph::new(banner_lines).block(
@@ -257,11 +248,7 @@ pub async fn run() -> Result<()> {
                 ));
             f.render_widget(cpu_gauge, gauge_layout[0]);
 
-            let mem_label = format!(
-                "{} / {}",
-                format_bytes(mem_used),
-                format_bytes(mem_total)
-            );
+            let mem_label = format!("{} / {}", format_bytes(mem_used), format_bytes(mem_total));
             let mem_gauge = Gauge::default()
                 .block(
                     Block::default()
@@ -286,11 +273,7 @@ pub async fn run() -> Result<()> {
                 ));
             f.render_widget(mem_gauge, gauge_layout[1]);
 
-            let swap_label = format!(
-                "{} / {}",
-                format_bytes(swap_used),
-                format_bytes(swap_total)
-            );
+            let swap_label = format!("{} / {}", format_bytes(swap_used), format_bytes(swap_total));
             let swap_gauge = Gauge::default()
                 .block(
                     Block::default()
@@ -353,10 +336,7 @@ pub async fn run() -> Result<()> {
                     let empty = bar_w.saturating_sub(filled);
                     let color = gauge_color(usage as f64);
                     Line::from(vec![
-                        Span::styled(
-                            format!(" C{:02} ", i),
-                            Style::default().fg(Color::DarkGray),
-                        ),
+                        Span::styled(format!(" C{:02} ", i), Style::default().fg(Color::DarkGray)),
                         Span::styled("\u{2588}".repeat(filled), Style::default().fg(color)),
                         Span::styled(
                             "\u{2591}".repeat(empty),
@@ -420,8 +400,7 @@ pub async fn run() -> Result<()> {
                             .style(Style::default().fg(Color::DarkGray)),
                         Cell::from(name.clone()).style(Style::default().fg(Color::White)),
                         Cell::from(format!("{:.1}", cpu_u)).style(Style::default().fg(color)),
-                        Cell::from(format_bytes(*mem))
-                            .style(Style::default().fg(Color::DarkGray)),
+                        Cell::from(format_bytes(*mem)).style(Style::default().fg(Color::DarkGray)),
                     ])
                 })
                 .collect();
@@ -470,10 +449,7 @@ pub async fn run() -> Result<()> {
             //  FOOTER — keybindings + monitoring status
             // ══════════════════════════════════════════════════════
             let footer = Paragraph::new(Line::from(vec![
-                Span::styled(
-                    format!(" {} ", spinner),
-                    Style::default().fg(Color::Cyan),
-                ),
+                Span::styled(format!(" {} ", spinner), Style::default().fg(Color::Cyan)),
                 Span::styled(
                     "MONITORING",
                     Style::default()
@@ -499,10 +475,7 @@ pub async fn run() -> Result<()> {
                     Style::default().fg(Color::White),
                 ),
                 Span::styled("  \u{2502}  ", Style::default().fg(Color::DarkGray)),
-                Span::styled(
-                    "\u{27f3} 400ms",
-                    Style::default().fg(Color::DarkGray),
-                ),
+                Span::styled("\u{27f3} 400ms", Style::default().fg(Color::DarkGray)),
             ]))
             .alignment(Alignment::Center)
             .block(
